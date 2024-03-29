@@ -1,4 +1,4 @@
-BSP-ThirdCurrency
+Genesis-MultipleCurrencies
 ============
 
-This BossShopPro Addon adds supports for a more currencies, which can be used in shops. 
+This Genesis Addon adds supports for a more currencies, which can be used in shops. 
