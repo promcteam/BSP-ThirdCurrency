@@ -2,5 +2,6 @@ name: MultipleCurrencies
 version: ${project.version}
 description: Genesis Addon - Adds support for a third economy plugin
 author: Black_ixx,ProMCTeam
+website: http://felix.neuby.de
 main: com.promcteam.genesis.addon.multiplecurrencies.MultipleCurrencies
 depend: [Genesis]
