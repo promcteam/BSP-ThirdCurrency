@@ -1,4 +1,4 @@
-package org.black_ixx.bossshop.addon.thirdcurrency;
+package com.promcteam.genesis.addon.multiplecurrencies;
 
 import org.black_ixx.bossshop.events.BSCheckStringForFeaturesEvent;
 import org.black_ixx.bossshop.events.BSRegisterTypesEvent;
@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class BSListener implements Listener {
+public class GenesisListener implements Listener {
 
-    private ThirdCurrency plugin;
+    private final MultipleCurrencies plugin;
 
-    public BSListener(ThirdCurrency plugin) {
+    public GenesisListener(MultipleCurrencies plugin) {
         this.plugin = plugin;
     }
 

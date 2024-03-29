@@ -1,5 +1,4 @@
-package org.black_ixx.bossshop.addon.thirdcurrency;
-
+package com.promcteam.genesis.addon.multiplecurrencies;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +7,7 @@ import org.black_ixx.bossshop.api.BossShopAddonConfigurable;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class ThirdCurrency extends BossShopAddonConfigurable {
+public class MultipleCurrencies extends BossShopAddonConfigurable {
 
 
     private List<CustomPoints> points;
@@ -26,7 +25,7 @@ public class ThirdCurrency extends BossShopAddonConfigurable {
 
     @Override
     public void enableAddon() {
-        getServer().getPluginManager().registerEvents(new BSListener(this), this);
+        getServer().getPluginManager().registerEvents(new GenesisListener(this), this);
 
         getConfig().options().copyDefaults(true);
         getConfig().addDefault("1.Name", "token");
@@ -35,7 +34,7 @@ public class ThirdCurrency extends BossShopAddonConfigurable {
         getConfig().addDefault("1.Placeholder.DisplayPoints", "%token% Tokens");
         getConfig().addDefault("1.PointsDisplay.Enabled", false);
 
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add("1000000:6:2:%number% million");
         list.add("1000:3:2:%number%k");
         list.add("0:0:0:%number%");
@@ -47,7 +46,7 @@ public class ThirdCurrency extends BossShopAddonConfigurable {
     }
 
     public void load() {
-        points = new ArrayList<CustomPoints>();
+        points = new ArrayList<>();
         for (String key : getConfig().getKeys(false)) {
             ConfigurationSection section = getConfig().getConfigurationSection(key);
             if (section != null) {
@@ -78,10 +77,7 @@ public class ThirdCurrency extends BossShopAddonConfigurable {
         return false;
     }
 
-
     public List<CustomPoints> getPoints() {
         return points;
     }
-
-
 }

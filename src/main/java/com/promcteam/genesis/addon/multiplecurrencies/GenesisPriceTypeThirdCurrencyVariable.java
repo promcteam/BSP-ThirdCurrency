@@ -1,4 +1,4 @@
-package org.black_ixx.bossshop.addon.thirdcurrency;
+package com.promcteam.genesis.addon.multiplecurrencies;
 
 
 import org.black_ixx.bossshop.core.BSBuy;
@@ -9,11 +9,11 @@ import org.black_ixx.bossshop.misc.MathTools;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 
-public class BSPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
+public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
 
-    private CustomPoints cp;
+    private final CustomPoints cp;
 
-    public BSPriceTypeThirdCurrencyVariable(CustomPoints points) {
+    public GenesisPriceTypeThirdCurrencyVariable(CustomPoints points) {
         this.cp = points;
         updateNames();
     }
