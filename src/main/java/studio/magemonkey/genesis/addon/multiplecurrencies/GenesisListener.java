@@ -1,4 +1,4 @@
-package com.promcteam.genesis.addon.multiplecurrencies;
+package studio.magemonkey.genesis.addon.multiplecurrencies;
 
 import org.black_ixx.bossshop.events.BSCheckStringForFeaturesEvent;
 import org.black_ixx.bossshop.events.BSRegisterTypesEvent;

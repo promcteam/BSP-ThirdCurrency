@@ -1,4 +1,4 @@
-package com.promcteam.genesis.addon.multiplecurrencies;
+package studio.magemonkey.genesis.addon.multiplecurrencies;
 
 import java.util.ArrayList;
 import java.util.List;
