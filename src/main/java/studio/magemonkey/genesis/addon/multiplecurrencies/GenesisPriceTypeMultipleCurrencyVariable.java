@@ -1,19 +1,17 @@
 package studio.magemonkey.genesis.addon.multiplecurrencies;
 
-
-import org.black_ixx.bossshop.core.BSBuy;
-import org.black_ixx.bossshop.core.prices.BSPriceTypeNumber;
-import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.misc.InputReader;
-import org.black_ixx.bossshop.misc.MathTools;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import studio.magemonkey.genesis.core.GenesisBuy;
+import studio.magemonkey.genesis.core.prices.GenesisPriceTypeNumber;
+import studio.magemonkey.genesis.managers.ClassManager;
+import studio.magemonkey.genesis.managers.misc.InputReader;
+import studio.magemonkey.genesis.misc.MathTools;
 
-public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
-
+public class GenesisPriceTypeMultipleCurrencyVariable extends GenesisPriceTypeNumber {
     private final CustomPoints cp;
 
-    public GenesisPriceTypeThirdCurrencyVariable(CustomPoints points) {
+    public GenesisPriceTypeMultipleCurrencyVariable(CustomPoints points) {
         this.cp = points;
         updateNames();
     }
@@ -36,7 +34,7 @@ public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
 
 
     @Override
-    public boolean hasPrice(Player p, BSBuy buy, Object price, ClickType clickType, int multiplier, boolean messageOnFailure) {
+    public boolean hasPrice(Player p, GenesisBuy buy, Object price, ClickType clickType, int multiplier, boolean messageOnFailure) {
         double points = ClassManager.manager.getMultiplierHandler().calculatePriceWithMultiplier(p, buy, clickType, (Double) price) * multiplier;
         if (cp.getPointsManager().getPoints(p) < points) {
             String message = cp.getMessageNotEnoughPoints();
@@ -49,7 +47,7 @@ public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
     }
 
     @Override
-    public String takePrice(Player p, BSBuy buy, Object price, ClickType clickType, int multiplier) {
+    public String takePrice(Player p, GenesisBuy buy, Object price, ClickType clickType, int multiplier) {
         double points = ClassManager.manager.getMultiplierHandler().calculatePriceWithMultiplier(p, buy, clickType, (Double) price) * multiplier;
 
         cp.getPointsManager().takePoints(p, points);
@@ -57,13 +55,13 @@ public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
     }
 
     @Override
-    public String getDisplayBalance(Player p, BSBuy buy, Object price, ClickType clickType) {
+    public String getDisplayBalance(Player p, GenesisBuy buy, Object price, ClickType clickType) {
         double balance_points = cp.getPointsManager().getPoints(p);
         return cp.getPlaceholderPoints().replace("%" + cp.getName() + "%", MathTools.displayNumber(balance_points, cp.getSpecialDisplayFormatting(), !cp.getPointsManager().usesDoubleValues()));
     }
 
     @Override
-    public String getDisplayPrice(Player p, BSBuy buy, Object price, ClickType clickType) {
+    public String getDisplayPrice(Player p, GenesisBuy buy, Object price, ClickType clickType) {
         return ClassManager.manager.getMultiplierHandler().calculatePriceDisplayWithMultiplier(p, buy, clickType, (Double) price, cp.getPlaceholderPoints().replace("%" + cp.getName() + "%", "%number%"), cp.getSpecialDisplayFormatting(), true);
     }
 
@@ -75,10 +73,6 @@ public class GenesisPriceTypeThirdCurrencyVariable extends BSPriceTypeNumber {
         } else {
             return new String[]{cp.getName()};
         }
-    }
-
-    public boolean supportsMultipliers() {
-        return true;
     }
 
     @Override

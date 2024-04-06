@@ -1,13 +1,13 @@
 package studio.magemonkey.genesis.addon.multiplecurrencies;
 
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
+import studio.magemonkey.genesis.api.GenesisAddonConfigurable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.black_ixx.bossshop.api.BossShopAddonConfigurable;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.ConfigurationSection;
-
-public class MultipleCurrencies extends BossShopAddonConfigurable {
+public class MultipleCurrencies extends GenesisAddonConfigurable {
 
 
     private List<CustomPoints> points;
@@ -15,12 +15,12 @@ public class MultipleCurrencies extends BossShopAddonConfigurable {
 
     @Override
     public String getAddonName() {
-        return "ThirdCurrency";
+        return "MultipleCurrencies";
     }
 
     @Override
-    public String getRequiredBossShopVersion() {
-        return "1.9.5";
+    public String getRequiredGenesisVersion() {
+        return "1.0.0";
     }
 
     @Override
@@ -63,11 +63,11 @@ public class MultipleCurrencies extends BossShopAddonConfigurable {
     }
 
     @Override
-    public void bossShopFinishedLoading() {
+    public void genesisFinishedLoading() {
     }
 
     @Override
-    public void bossShopReloaded(CommandSender sender) {
+    public void genesisReloaded(CommandSender sender) {
         getAddonConfig().reload();
         load();
     }

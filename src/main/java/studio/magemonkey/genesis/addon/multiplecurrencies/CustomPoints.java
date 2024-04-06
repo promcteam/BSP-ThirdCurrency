@@ -1,72 +1,54 @@
 package studio.magemonkey.genesis.addon.multiplecurrencies;
 
-import java.util.List;
-
-import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.features.PointsManager;
-import org.black_ixx.bossshop.managers.features.PointsManager.PointsPlugin;
+import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
+import studio.magemonkey.genesis.managers.ClassManager;
+import studio.magemonkey.genesis.managers.features.PointsManager;
+import studio.magemonkey.genesis.managers.features.PointsManager.PointsPlugin;
+
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class CustomPoints {
+    @Getter
+    private final PointsPlugin                           pointsPlugin;
+    @Getter
+    private final PointsManager                            pointsManager;
+    @Getter
+    private final GenesisPriceTypeMultipleCurrencyVariable  priceType;
+    @Getter
+    private final GenesisRewardTypeMultipleCurrencyVariable rewardType;
 
-    private final PointsPlugin pointsplugin;
-    private final PointsManager manager;
-    private final GenesisPriceTypeThirdCurrencyVariable pricetype;
-    private final GenesisRewardTypeThirdCurrencyVariable rewardtype;
-
+    @Getter
     private final String name;
-    private final String messageNotEnough;
+    @Getter
+    private final String messageNotEnoughPoints;
     private final String messageDisplay;
 
-    private final boolean specialDisplay;
+    private final boolean      specialDisplay;
+    @Getter
     private final List<String> specialDisplayFormatting;
 
 
     public CustomPoints(ConfigurationSection section) {
         name = section.getString("Name");
-        pointsplugin = ClassManager.manager.getConfigHandler().findPointsPlugin(section.getString("PointsPlugin"));
-        messageNotEnough = section.getString("Message.NotEnoughPoints");
+        pointsPlugin = ClassManager.manager.getConfigHandler().findPointsPlugin(section.getString("PointsPlugin"));
+        messageNotEnoughPoints = section.getString("Message.NotEnoughPoints");
         messageDisplay = section.getString("Placeholder.DisplayPoints");
         specialDisplay = section.getBoolean("PointsDisplay.Enabled");
         specialDisplayFormatting = section.getStringList("PointsDisplay.List");
-        manager = new PointsManager(pointsplugin);
+        pointsManager = new PointsManager(pointsPlugin);
 
-        pricetype = new GenesisPriceTypeThirdCurrencyVariable(this);
-        rewardtype = new GenesisRewardTypeThirdCurrencyVariable(this);
+        priceType = new GenesisPriceTypeMultipleCurrencyVariable(this);
+        rewardType = new GenesisRewardTypeMultipleCurrencyVariable(this);
     }
 
 
     public void register() {
-        pricetype.register();
-        rewardtype.register();
+        priceType.register();
+        rewardType.register();
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-
-    public PointsPlugin getPointsPlugin() {
-        return pointsplugin;
-    }
-
-    public PointsManager getPointsManager() {
-        return manager;
-    }
-
-    public GenesisPriceTypeThirdCurrencyVariable getPriceType() {
-        return pricetype;
-    }
-
-    public GenesisRewardTypeThirdCurrencyVariable getRewardType() {
-        return rewardtype;
-    }
-
-    public String getMessageNotEnoughPoints() {
-        return messageNotEnough;
-    }
 
     public String getPlaceholderPoints() {
         return messageDisplay;
@@ -74,10 +56,6 @@ public class CustomPoints {
 
     public boolean getSpecialDisplayEnabled() {
         return specialDisplay;
-    }
-
-    public List<String> getSpecialDisplayFormatting() {
-        return specialDisplayFormatting;
     }
 
 }
