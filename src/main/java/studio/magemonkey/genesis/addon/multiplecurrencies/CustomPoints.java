@@ -11,9 +11,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class CustomPoints {
     @Getter
-    private final PointsPlugin                           pointsPlugin;
+    private final PointsPlugin                              pointsPlugin;
     @Getter
-    private final PointsManager                            pointsManager;
+    private final PointsManager                             pointsManager;
     @Getter
     private final GenesisPriceTypeMultipleCurrencyVariable  priceType;
     @Getter
